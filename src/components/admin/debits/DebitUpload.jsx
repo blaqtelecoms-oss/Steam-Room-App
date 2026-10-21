@@ -14,7 +14,7 @@ export default function DebitUpload({ members, onDone }) {
     if (!file) { setErr("Choose a PDF first."); return; }
     setBusy(true); setErr(""); setResult(null);
     try {
-      const { file_uri } = await base44.integrations.Core.UploadPrivateFile({ file });
+      const { file_uri } = await base44.integrations.Core.UploadPrivateFile({ file, bucket: "documents" });
       const ext = await base44.integrations.Core.ExtractDataFromUploadedFile({
         file_url: file_uri,
         json_schema: {

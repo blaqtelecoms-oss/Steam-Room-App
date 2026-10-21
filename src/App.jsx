@@ -22,6 +22,7 @@ import CheckoutReturn from "@/pages/CheckoutReturn";
 import TrainerBookings from "@/pages/TrainerBookings";
 import TrainerPortal from "@/pages/TrainerPortal";
 import EmployeePortal from "@/pages/EmployeePortal";
+import Login from "@/pages/Login";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -62,6 +63,7 @@ const AuthenticatedApp = () => {
       <Route path="/trainer-portal" element={<TrainerPortal />} />
       <Route path="/employee-portal" element={<EmployeePortal />} />
       </Route>
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

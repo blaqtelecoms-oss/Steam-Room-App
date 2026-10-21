@@ -31,7 +31,7 @@ function ImageUpload({ label, value, onChange, required }) {
     if (!file) return;
     setBusy(true);
     try {
-      const { file_url } = await base44.integrations.Core.UploadPublicFile({ file });
+      const { file_url } = await base44.integrations.Core.UploadPublicFile({ file, bucket: "challenge" });
       onChange(file_url);
     } finally {
       setBusy(false);

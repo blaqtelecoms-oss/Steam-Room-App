@@ -27,7 +27,7 @@ export default function AdvertsTab() {
     const isVideo = file.type.startsWith("video/");
     setUploading(true);
     try {
-      const { file_url } = await base44.integrations.Core.UploadPublicFile({ file });
+      const { file_url } = await base44.integrations.Core.UploadPublicFile({ file, bucket: "adverts" });
       setForm((f) => ({ ...f, image_url: file_url, media_type: isVideo ? "video" : "image" }));
     } catch (err) {
       alert("Upload failed");

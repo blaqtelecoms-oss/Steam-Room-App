@@ -67,7 +67,7 @@ function TrainerForm({ initial, onDone }) {
     if (!file) return;
     setUploading(true);
     try {
-      const res = await base44.integrations.Core.UploadPublicFile({ file });
+      const res = await base44.integrations.Core.UploadPublicFile({ file, bucket: "trainers" });
       upd("image", res.file_url);
     } catch (e) {
       setErr(e?.message || "Upload failed.");
