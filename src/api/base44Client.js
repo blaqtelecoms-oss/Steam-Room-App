@@ -485,10 +485,26 @@ const integrations = {
         "InvokeLLM requires a Supabase Edge Function with an AI provider. Deploy it to restore AI scoring."
       );
     },
-    async ExtractDataFromUploadedFile() {
-      throw new Error(
-        "ExtractDataFromUploadedFile requires a Supabase Edge Function with document/AI parsing. Deploy it to restore debit imports."
-      );
+    async ExtractDataFromUploadedFile({ file: fileObj, file_url, json_schema }) {
+      // Client-side PDF text extraction via pdfjs-dist (no Edge Function / AI API needed).
+      // The caller passes the File object directly (`file`); falls back to downloading
+      // from Supabase Storage when only a path (`file_url`) is provided.
+      const { extractPdfText, parseDebitRows } = await import("@/lib/pdfExtract");
+
+      let blob = fileObj;
+      if (!blob && file_url) {
+        // file_url is the storage path returned by UploadPrivateFile
+        const { data, error } = await supabase.storage
+          .from("documents")
+          .download(file_url);
+        if (error) throw enrich(error);
+        blob = data;
+      }
+      if (!blob) throw new Error("No file provided for extraction.");
+
+      const text = await extractPdfText(blob);
+      const records = parseDebitRows(text);
+      return { status: "success", output: { records } };
     },
   },
 };

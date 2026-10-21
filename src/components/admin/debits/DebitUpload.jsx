@@ -16,6 +16,7 @@ export default function DebitUpload({ members, onDone }) {
     try {
       const { file_uri } = await base44.integrations.Core.UploadPrivateFile({ file, bucket: "documents" });
       const ext = await base44.integrations.Core.ExtractDataFromUploadedFile({
+        file,
         file_url: file_uri,
         json_schema: {
           type: "object",
