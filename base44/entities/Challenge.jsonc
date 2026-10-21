@@ -1,0 +1,100 @@
+{
+  "name": "Challenge",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "division": {
+      "type": "string",
+      "enum": [
+        "Women's",
+        "Men's",
+        "Elite Athlete"
+      ],
+      "default": "Men's"
+    },
+    "before_front": {
+      "type": "string"
+    },
+    "before_side": {
+      "type": "string"
+    },
+    "before_back": {
+      "type": "string"
+    },
+    "after_front": {
+      "type": "string"
+    },
+    "after_side": {
+      "type": "string"
+    },
+    "after_back": {
+      "type": "string"
+    },
+    "ai_score": {
+      "type": "number"
+    },
+    "ai_feedback": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "approved",
+        "winner"
+      ],
+      "default": "submitted"
+    }
+  },
+  "required": [
+    "full_name",
+    "division",
+    "before_front"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.status": "approved"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

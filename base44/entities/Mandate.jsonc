@@ -1,0 +1,164 @@
+{
+  "name": "Mandate",
+  "type": "object",
+  "properties": {
+    "member_id": {
+      "type": "string"
+    },
+    "membership_type": {
+      "type": "string"
+    },
+    "id_type": {
+      "type": "string",
+      "enum": [
+        "RSA ID",
+        "Other ID"
+      ],
+      "default": "RSA ID"
+    },
+    "id_number": {
+      "type": "string"
+    },
+    "other_id": {
+      "type": "string"
+    },
+    "cell_number": {
+      "type": "string"
+    },
+    "email_address": {
+      "type": "string"
+    },
+    "address_line1": {
+      "type": "string"
+    },
+    "address_line2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "nok_name": {
+      "type": "string"
+    },
+    "nok_relationship": {
+      "type": "string"
+    },
+    "nok_contact": {
+      "type": "string"
+    },
+    "nok_alt_contact": {
+      "type": "string"
+    },
+    "account_holder_type": {
+      "type": "string",
+      "enum": [
+        "Individual",
+        "Company"
+      ],
+      "default": "Individual"
+    },
+    "account_holder": {
+      "type": "string"
+    },
+    "bank": {
+      "type": "string"
+    },
+    "branch_code": {
+      "type": "string"
+    },
+    "account_number": {
+      "type": "string"
+    },
+    "account_type": {
+      "type": "string",
+      "enum": [
+        "Current (Cheque)",
+        "Savings",
+        "Transmission"
+      ],
+      "default": "Current (Cheque)"
+    },
+    "contract_reference": {
+      "type": "string"
+    },
+    "contract_amount": {
+      "type": "number"
+    },
+    "max_collection_amount": {
+      "type": "number"
+    },
+    "mandate_type": {
+      "type": "string",
+      "enum": [
+        "FIXED",
+        "VARIABLE",
+        "USAGE BASED"
+      ],
+      "default": "FIXED"
+    },
+    "instalment_occurrence": {
+      "type": "string",
+      "enum": [
+        "RECURRING",
+        "ONCE-OFF"
+      ],
+      "default": "RECURRING"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "MONTHLY",
+        "QUARTERLY",
+        "BI-ANNUALLY",
+        "ANNUALLY",
+        "MONTH-END"
+      ],
+      "default": "MONTHLY"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "debit_day": {
+      "type": "string"
+    },
+    "agreed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "member_id"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Vote",
+  "type": "object",
+  "properties": {
+    "challenge_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_id"
+  ],
+  "rls": {
+    "read": {},
+    "create": {},
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
