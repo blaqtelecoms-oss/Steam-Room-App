@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Music2, MapPin, Phone, Mail } from "lucide-react";
 
-const SR_LOGO = "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/cbd45cfc4_708958679_122105616411299702_3106745369025167558_n.jpg";
+const SR_LOGO = "/media/cbd45cfc4_708958679_122105616411299702_3106745369025167558_n.jpg";
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
           <div>
             <Link to="/" className="flex items-center gap-2.5 mb-4">
               <div className="w-11 h-11 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center overflow-hidden">
-                <img src="https://media.base44.com/images/public/6a97c26ed514254a3c28d235/137ce0856_WhatsApp_Image_2026-09-12_at_41151_PM.jpeg" alt="SR FITS" className="w-full h-full object-cover" />
+                <img src="/media/137ce0856_WhatsApp_Image_2026-09-12_at_41151_PM.jpeg" alt="SR FITS" className="w-full h-full object-cover" />
               </div>
               <span className="font-display text-sm tracking-widest leading-tight">
                 STEAM ROOM

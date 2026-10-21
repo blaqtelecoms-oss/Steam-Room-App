@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const classes = [
   {
     title: "Signature Leg Day",
-    image: "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/b17e111f5_716483188_122106810411299702_7175398778005251319_n.jpg",
+    image: "/media/b17e111f5_716483188_122106810411299702_7175398778005251319_n.jpg",
     duration: "60 min",
     calories: "650",
     capacity: "20",
@@ -19,7 +19,7 @@ const classes = [
   },
   {
     title: "Back Day Wednesdays",
-    image: "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/1ea11b04f_720830621_122107515681299702_5487666510300205399_n.jpg",
+    image: "/media/1ea11b04f_720830621_122107515681299702_5487666510300205399_n.jpg",
     duration: "60 min",
     calories: "600",
     capacity: "25",
@@ -28,7 +28,7 @@ const classes = [
   },
   {
     title: "Strength Training",
-    image: "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/93168050d_715466521_122106810207299702_4382867746132126529_n.jpg",
+    image: "/media/93168050d_715466521_122106810207299702_4382867746132126529_n.jpg",
     duration: "55 min",
     calories: "450",
     capacity: "12",
@@ -37,7 +37,7 @@ const classes = [
   },
   {
     title: "HIIT Inferno",
-    image: "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/f9c5b211e_713685068_122106810363299702_5254549405020815113_n.jpg",
+    image: "/media/f9c5b211e_713685068_122106810363299702_5254549405020815113_n.jpg",
     duration: "45 min",
     calories: "600",
     capacity: "20",
@@ -46,7 +46,7 @@ const classes = [
   },
   {
     title: "Boxing Fundamentals",
-    image: "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/a5a0330fc_715120582_122106809361299702_6022963897640236782_n.jpg",
+    image: "/media/a5a0330fc_715120582_122106809361299702_6022963897640236782_n.jpg",
     duration: "50 min",
     calories: "700",
     capacity: "15",

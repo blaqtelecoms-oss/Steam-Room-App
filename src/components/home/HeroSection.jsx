@@ -5,7 +5,7 @@ import { ArrowRight, Play, Flame, Users, Trophy, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import AdvertBanner from "@/components/home/AdvertBanner";
 
-const TOUR_VIDEO = "https://media.base44.com/videos/public/6a97c26ed514254a3c28d235/f4bc459c9_Gym.mp4";
+const TOUR_VIDEO = "/media/f4bc459c9_Gym.mp4";
 
 const stats = [
 { icon: Flame, value: "500+", label: "Active Members" },
@@ -13,8 +13,8 @@ const stats = [
 { icon: Trophy, value: "20+", label: "Classes Weekly" }];
 
 
-const HERO_IMG = "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/93168050d_715466521_122106810207299702_4382867746132126529_n.jpg";
-const HERO_VIDEO = "https://media.base44.com/videos/public/6a97c26ed514254a3c28d235/65cc25db1_Gym.mp4";
+const HERO_IMG = "/media/93168050d_715466521_122106810207299702_4382867746132126529_n.jpg";
+const HERO_VIDEO = "/media/65cc25db1_Gym.mp4";
 
 export default function HeroSection() {
   const [showTour, setShowTour] = useState(false);

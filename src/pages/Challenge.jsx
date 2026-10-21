@@ -28,7 +28,7 @@ export default function Challenge() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center mb-6">
         <div className="flex justify-center mb-3">
           <div className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center overflow-hidden">
-            <img src="https://media.base44.com/images/public/6a97c26ed514254a3c28d235/137ce0856_WhatsApp_Image_2026-09-12_at_41151_PM.jpeg" alt="SR FITS" className="w-full h-full object-cover" />
+            <img src="/media/137ce0856_WhatsApp_Image_2026-09-12_at_41151_PM.jpeg" alt="SR FITS" className="w-full h-full object-cover" />
           </div>
         </div>
         <p className="text-[10px] lg:text-xs tracking-[0.25em] text-muted-foreground uppercase mb-2">Steam Room Fitness Center Presents</p>

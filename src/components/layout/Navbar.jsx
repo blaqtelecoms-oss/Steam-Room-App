@@ -55,7 +55,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-2.5 group">
             <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center overflow-hidden group-hover:border-primary transition-colors">
               <img
-                src="https://media.base44.com/images/public/6a97c26ed514254a3c28d235/137ce0856_WhatsApp_Image_2026-09-12_at_41151_PM.jpeg"
+                src="/media/137ce0856_WhatsApp_Image_2026-09-12_at_41151_PM.jpeg"
                 alt="SR FITS"
                 className="w-full h-full object-cover"
               />

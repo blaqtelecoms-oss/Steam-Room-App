@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Loader2, UserPlus, LogIn, Dumbbell, CreditCard, Trophy, ArrowRight } from "lucide-react";
 import MemberOnboarding from "@/components/portal/MemberOnboarding";
 
-const LOGO = "https://media.base44.com/images/public/6a97c26ed514254a3c28d235/86f059f1a_Logo.jpeg";
+const LOGO = "/media/86f059f1a_Logo.jpeg";
 
 const benefits = [
   { icon: Dumbbell, title: "Train", text: "Group classes & personal programs." },
