@@ -183,13 +183,17 @@ function makeEntity(table) {
   };
 }
 
-// base44.entities.<AnyEntity> → lowercased table name.
+// base44.entities.<AnyEntity> → table name.
+// Most entities just lowercase, but a few table names are plural.
+const TABLE_MAP = { order: "orders", user: "users" };
+
 const entities = new Proxy(
   {},
   {
     get(_, name) {
       if (typeof name !== "string") return undefined;
-      return makeEntity(name.toLowerCase());
+      const key = name.toLowerCase();
+      return makeEntity(TABLE_MAP[key] || key);
     },
   }
 );
