@@ -104,6 +104,7 @@ ALTER TABLE public.trainer ADD COLUMN IF NOT EXISTS "is_sample" boolean;
 ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.users ALTER COLUMN id TYPE text USING id::text;
 ALTER TABLE public.users ALTER COLUMN created_by_id TYPE text USING created_by_id::text;
+ALTER TABLE public.users ADD COLUMN IF NOT EXISTS "auth_id" uuid; -- links to auth.users.id (Supabase Auth migration)
 ALTER TABLE public.users ADD COLUMN IF NOT EXISTS "full_name" text;
 ALTER TABLE public.users ADD COLUMN IF NOT EXISTS "disabled" text;
 ALTER TABLE public.users ADD COLUMN IF NOT EXISTS "disabled_reason" text;
