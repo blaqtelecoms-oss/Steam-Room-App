@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://base44.com/logo_v2.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Steam Room Fitness Center (SR FITS) — Madadeni, Newcastle. Dark Mode strength training. Members only. Join today." />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Steam Room Fitness Center | SR FITS</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('srfits-theme') || 'dark';
+          if (t === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

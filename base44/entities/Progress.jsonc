@@ -1,0 +1,42 @@
+{
+  "name": "Progress",
+  "type": "object",
+  "properties": {
+    "member_id": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "weight": {
+      "type": "number"
+    },
+    "body_fat": {
+      "type": "number"
+    },
+    "workout_completed": {
+      "type": "string"
+    },
+    "personal_record": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "date"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

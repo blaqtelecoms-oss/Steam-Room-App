@@ -1,0 +1,129 @@
+{
+  "name": "Member",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string"
+    },
+    "date_joined": {
+      "type": "string",
+      "format": "date"
+    },
+    "membership_tier": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "Pro",
+        "Elite"
+      ],
+      "default": "Pro"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "frozen",
+        "expired"
+      ],
+      "default": "active"
+    },
+    "card_id": {
+      "type": "string"
+    },
+    "id_type": {
+      "type": "string",
+      "enum": [
+        "RSA ID",
+        "Other ID"
+      ],
+      "default": "RSA ID"
+    },
+    "id_number": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "avatar_url": {
+      "type": "string"
+    },
+    "next_payment_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "next_payment_amount": {
+      "type": "number"
+    },
+    "contract_start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract_length_months": {
+      "type": "number"
+    },
+    "joining_fee": {
+      "type": "number"
+    },
+    "monthly_premium": {
+      "type": "number"
+    },
+    "credit_limit": {
+      "type": "number",
+      "default": 500
+    },
+    "credit_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "credit_streak": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "full_name",
+    "date_joined",
+    "membership_tier"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

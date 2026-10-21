@@ -1,0 +1,60 @@
+{
+  "name": "DebitRecord",
+  "type": "object",
+  "properties": {
+    "reference": {
+      "type": "string",
+      "description": "Debit order reference e.g. SR0000001DC"
+    },
+    "member_id": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "action_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the money was debited (or attempted)"
+    },
+    "month": {
+      "type": "string",
+      "description": "YYYY-MM of action_date"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "debited",
+        "unsuccessful"
+      ]
+    }
+  },
+  "required": [
+    "reference",
+    "action_date",
+    "month",
+    "outcome"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
