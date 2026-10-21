@@ -11,4 +11,7 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  server: process.env.BASE44_PREVIEW_MODE === '1'
+    ? { host: '0.0.0.0', port: 3000, allowedHosts: true, strictPort: true }
+    : undefined,
 });
