@@ -26,10 +26,20 @@ The local stack runs as Docker containers outside `docker-compose.base44.yml`.
 It is ephemeral in the sandbox: re-run `npx supabase start` after a sandbox
 recreate. Local data lives in the `supabase` Docker volumes, not the repo.
 
-## Link to a remote project (optional)
+## Linked remote project
 
-If you later want to sync this repo to a cloud project instead of local:
+This repo is linked to the remote project **Steam Room App**
+(ref `qymqgovxghrigylrccfc`, West EU / Ireland) via `supabase link`.
+
+The link state lives in `supabase/.temp/project-ref` (gitignored). To re-link
+after a fresh clone or sandbox recreate, set your Supabase access token and run:
 
 ```bash
-npx supabase link --project-ref <your-project-ref>   # needs a Supabase access token
+SUPABASE_ACCESS_TOKEN=<your-token> npx supabase link --project-ref qymqgovxghrigylrccfc
+```
+
+Sync schema from remote into a migration file:
+
+```bash
+SUPABASE_ACCESS_TOKEN=<your-token> npx supabase db pull --schema public
 ```
