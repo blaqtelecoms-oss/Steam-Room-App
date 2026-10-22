@@ -31,16 +31,12 @@ export default function MembersTab({ usersById }) {
   };
 
   const resetPassword = async (m) => {
-    const email = usersById[m.created_by_id]?.email;
+    const email = m.email || usersById[m.created_by_id]?.email;
     if (!email) { setMsg(`No email on file for ${m.full_name}.`); return; }
     setBusyId(m.id);
     try {
-      await base44.integrations.Core.SendEmail({
-        to: email,
-        subject: "SR FITS — Password Reset",
-        body: `Hi ${m.full_name},\n\nA password reset was requested for your SR FITS account. Please open the app, log out, and use the "Forgot Password" link on the login screen to set a new password.\n\n— Steam Room Fitness Center`,
-      });
-      setMsg(`Reset email sent to ${email}.`);
+      await base44.auth.resetUserPassword(email);
+      setMsg(`Password reset email sent to ${email}.`);
     } catch (e) {
       setMsg(e?.message || "Failed to send reset email.");
     }

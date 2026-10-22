@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
-import { Lock, Users, Trophy, CreditCard, Bell, Shield, LogOut, Megaphone, LogIn, Dumbbell, Calendar, Wallet, Package, ShoppingCart, Briefcase } from "lucide-react";
+import { Lock, Users, Trophy, CreditCard, Bell, Shield, LogOut, Megaphone, LogIn, Dumbbell, Calendar, Wallet, Package, ShoppingCart, Briefcase, KeyRound } from "lucide-react";
 import MembersTab from "@/components/admin/MembersTab";
 import ApplicationsTab from "@/components/admin/ApplicationsTab";
 import PaymentsTab from "@/components/admin/PaymentsTab";
@@ -40,6 +40,11 @@ export default function Admin() {
   const [tab, setTab] = useState("members");
   const [usersById, setUsersById] = useState({});
   const [employeeAccess, setEmployeeAccess] = useState(null);
+  const [showPwChange, setShowPwChange] = useState(false);
+  const [newPw, setNewPw] = useState("");
+  const [newPw2, setNewPw2] = useState("");
+  const [pwMsg, setPwMsg] = useState("");
+  const [pwBusy, setPwBusy] = useState(false);
 
   const isAdmin = isAuthenticated && user?.role === "admin";
 
@@ -84,6 +89,22 @@ export default function Admin() {
     sessionStorage.removeItem("sr_admin");
     setAuthed(false);
     setPw("");
+  };
+
+  const changePassword = async () => {
+    if (newPw.length < 6) { setPwMsg("Password must be at least 6 characters."); return; }
+    if (newPw !== newPw2) { setPwMsg("Passwords do not match."); return; }
+    setPwBusy(true);
+    setPwMsg("");
+    try {
+      await base44.auth.changePassword(newPw);
+      setPwMsg("Password changed successfully.");
+      setNewPw(""); setNewPw2("");
+      setTimeout(() => { setShowPwChange(false); setPwMsg(""); }, 1500);
+    } catch (e) {
+      setPwMsg(e?.message || "Failed to change password.");
+    }
+    setPwBusy(false);
   };
 
   // Not logged in → prompt login
@@ -167,10 +188,26 @@ export default function Admin() {
             <h1 className="font-space font-bold text-xl">Admin Console</h1>
           </div>
         </div>
-        <button onClick={logout} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-primary/20 rounded-lg px-3 py-2">
-          <LogOut className="w-3.5 h-3.5" /> Lock
-        </button>
+        <div className="flex items-center gap-2">
+          <button onClick={() => { setShowPwChange((s) => !s); setPwMsg(""); }} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-primary/20 rounded-lg px-3 py-2">
+            <KeyRound className="w-3.5 h-3.5" /> Password
+          </button>
+          <button onClick={logout} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-primary/20 rounded-lg px-3 py-2">
+            <LogOut className="w-3.5 h-3.5" /> Lock
+          </button>
+        </div>
       </div>
+      {showPwChange && (
+        <div className="mb-4 rounded-2xl border border-primary/25 bg-card p-4 max-w-sm">
+          <p className="font-display text-xs tracking-widest text-primary mb-3">CHANGE PASSWORD</p>
+          <input type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} placeholder="New password" className="w-full rounded-xl bg-white/[0.03] border border-primary/20 px-4 py-3 text-sm outline-none focus:border-primary mb-2" />
+          <input type="password" value={newPw2} onChange={(e) => setNewPw2(e.target.value)} placeholder="Confirm new password" className="w-full rounded-xl bg-white/[0.03] border border-primary/20 px-4 py-3 text-sm outline-none focus:border-primary" />
+          {pwMsg && <p className={`text-xs mt-2 ${pwMsg.includes("success") ? "text-primary" : "text-destructive"}`}>{pwMsg}</p>}
+          <button onClick={changePassword} disabled={pwBusy} className="w-full mt-3 bg-primary text-primary-foreground py-3 rounded-xl text-sm font-semibold uppercase tracking-wide disabled:opacity-60">
+            {pwBusy ? "Saving…" : "Change Password"}
+          </button>
+        </div>
+      )}
       <div className="lg:flex lg:gap-8 lg:items-start">
       <div className="flex gap-2 mb-5 overflow-x-auto pb-1 lg:flex-col lg:w-56 lg:shrink-0 lg:overflow-visible lg:mb-0 lg:pb-0 lg:sticky lg:top-24">
         {visibleTabs.map((t) => {
