@@ -23,6 +23,7 @@ export async function startYocoCheckout({
       description,
       payment_id,
       member_id,
+      return_base: window.location.origin,
     });
     const { redirectUrl, reference } = res.data;
     if (!redirectUrl) throw new Error("No checkout URL returned.");
