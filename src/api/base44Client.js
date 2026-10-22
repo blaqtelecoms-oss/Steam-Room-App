@@ -238,6 +238,18 @@ const auth = {
     currentUserId = null;
     if (returnTo) window.location.href = "/login";
   },
+  async changePassword(newPassword) {
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) throw enrich(error);
+    return { success: true };
+  },
+  async resetUserPassword(email) {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + "/login",
+    });
+    if (error) throw enrich(error);
+    return { success: true };
+  },
 };
 
 // ---- Backend functions (formerly Base44 server functions) ----
