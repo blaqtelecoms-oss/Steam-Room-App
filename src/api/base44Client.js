@@ -439,11 +439,14 @@ const FN = {
     return {};
   },
 
-  // --- External-service functions: need a Supabase Edge Function + credentials ---
-  async CreateYocoCheckout() {
-    throw new Error(
-      "CreateYocoCheckout requires a Supabase Edge Function with the Yoco secret key. Deploy it to restore checkout."
-    );
+  // --- External-service functions: backed by Supabase Edge Functions ---
+  async CreateYocoCheckout(args) {
+    const { data, error } = await supabase.functions.invoke("create-yoco-checkout", {
+      body: args,
+    });
+    if (error) throw enrich(error);
+    if (data?.error) throw new Error(data.error);
+    return data;
   },
   async SendSRReminder() {
     throw new Error(
