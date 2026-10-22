@@ -1,0 +1,38 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "VITE_SUPABASE_ANON_KEY",
+      "description": "Supabase anon key for the Steam Room App project (public, browser-safe). Get it from the Supabase dashboard > Settings > API > anon public key.",
+      "requiredAtBoot": true,
+      "generatedForDevelopment": false
+    },
+    {
+      "name": "YOCO_SECRET_KEY",
+      "description": "Yoco secret API key for creating checkout sessions. Get it from the Yoco developer dashboard.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "YOCO_WEBHOOK_SECRET",
+      "description": "Yoco webhook signing secret for verifying payment confirmations. Get it from the Yoco developer dashboard.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "SUPABASE_SERVICE_ROLE_KEY",
+      "description": "Supabase service role key for server-side admin operations. Get it from the Supabase dashboard > Settings > API > service_role key.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "SUPABASE_DB_PASSWORD",
+      "description": "Supabase database password for local CLI development. Get it from the Supabase dashboard > Settings > Database.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "SUPABASE_ACCESS_TOKEN",
+      "description": "Supabase CLI access token for linking to the remote project. Get it from the Supabase dashboard > Account > Access Tokens.",
+      "requiredAtBoot": false
+    }
+  ]
+}
