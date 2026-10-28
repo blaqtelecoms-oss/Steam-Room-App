@@ -23,6 +23,7 @@ import TrainerBookings from "@/pages/TrainerBookings";
 import TrainerPortal from "@/pages/TrainerPortal";
 import EmployeePortal from "@/pages/EmployeePortal";
 import Login from "@/pages/Login";
+import Gallery from "@/pages/Gallery";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -53,6 +54,7 @@ const AuthenticatedApp = () => {
         <Route path="/trainers" element={<Trainers />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/portal" element={<Portal />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/challenge" element={<Challenge />} />
