@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { Lock, Users, Trophy, CreditCard, Bell, Shield, LogOut, Megaphone, LogIn, Dumbbell, Calendar, Wallet, Package, ShoppingCart, Briefcase, KeyRound, Images } from "lucide-react";
@@ -47,7 +48,8 @@ const toBottomItem = (activeTab, setTab) => (t) => ({
 });
 
 export default function Admin() {
-  const { user, isAuthenticated, isLoadingAuth, navigateToLogin } = useAuth();
+  const { user, isAuthenticated, isLoadingAuth, navigateToLogin, logout: signOutAccount } = useAuth();
+  const navigate = useNavigate();
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("sr_admin") === "1");
   const [pw, setPw] = useState("");
   const [err, setErr] = useState(false);
@@ -99,10 +101,13 @@ export default function Admin() {
     }
   };
 
+  // Sign out of the admin account and land on the public homepage.
   const logout = () => {
     sessionStorage.removeItem("sr_admin");
     setAuthed(false);
     setPw("");
+    signOutAccount(false);
+    navigate("/", { replace: true });
   };
 
   const changePassword = async () => {
