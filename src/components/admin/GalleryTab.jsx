@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
-import { isVideoMedia } from "@/lib/media";
+import { isVideoMedia, mediaFileName } from "@/lib/media";
+import DownloadButton from "@/components/gallery/DownloadButton";
 import { Plus, Trash2, Image as ImageIcon, Video, Power, Loader2 } from "lucide-react";
 
 const EMPTY_FORM = { title: "", caption: "", media_url: "", media_type: "image", active: true, order: 0 };
@@ -193,6 +194,11 @@ export default function GalleryTab() {
                 <span className={`text-[10px] px-2 py-1 rounded-full border ${item.active ? "border-primary/40 text-primary" : "border-white/10 text-muted-foreground"}`}>
                   {item.active ? "Published" : "Draft"}
                 </span>
+                <DownloadButton
+                  url={item.media_url}
+                  filename={mediaFileName(item.title, item.media_url)}
+                  className="h-8 w-8"
+                />
                 <button onClick={() => toggle(item)} className="p-1.5 rounded-lg hover:bg-primary/10 text-muted-foreground hover:text-primary" title="Toggle published">
                   <Power className="w-4 h-4" />
                 </button>
