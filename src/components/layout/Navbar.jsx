@@ -14,6 +14,7 @@ const desktopLinks = [
   { label: "Shop", path: "/shop" },
   { label: "Pricing", path: "/pricing" },
   { label: "Challenge", path: "/challenge" },
+  { label: "Gallery", path: "/gallery" },
   { label: "Portal", path: "/portal" },
   { label: "Contact", path: "/contact" },
 ];

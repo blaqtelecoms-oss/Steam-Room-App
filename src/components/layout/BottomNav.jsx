@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, ShoppingBag, LayoutDashboard, CreditCard, Plus, Trophy, Dumbbell, Users } from "lucide-react";
+import { Home, ShoppingBag, LayoutDashboard, CreditCard, Plus, Trophy, Dumbbell, Users, Images } from "lucide-react";
 
 const mainTabs = [
   { label: "Home", path: "/", icon: Home },
@@ -13,6 +13,7 @@ const moreTabs = [
   { label: "Challenge", path: "/challenge", icon: Trophy },
   { label: "Classes", path: "/classes", icon: Dumbbell },
   { label: "Trainers", path: "/trainers", icon: Users },
+  { label: "Gallery", path: "/gallery", icon: Images },
 ];
 
 export default function BottomNav() {
