@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
-import { Lock, Users, Trophy, CreditCard, Bell, Shield, LogOut, Megaphone, LogIn, Dumbbell, Calendar, Wallet, Package, ShoppingCart, Briefcase, KeyRound } from "lucide-react";
+import { Lock, Users, Trophy, CreditCard, Bell, Shield, LogOut, Megaphone, LogIn, Dumbbell, Calendar, Wallet, Package, ShoppingCart, Briefcase, KeyRound, Images } from "lucide-react";
 import MembersTab from "@/components/admin/MembersTab";
 import ApplicationsTab from "@/components/admin/ApplicationsTab";
 import PaymentsTab from "@/components/admin/PaymentsTab";
@@ -14,6 +14,7 @@ import InventoryTab from "@/components/admin/InventoryTab";
 import OrdersTab from "@/components/admin/OrdersTab";
 import EmployeesTab from "@/components/admin/EmployeesTab";
 import DebitsTab from "@/components/admin/DebitsTab";
+import GalleryTab from "@/components/admin/GalleryTab";
 
 const ADMIN_PASSWORD = "Admin2026";
 
@@ -27,6 +28,7 @@ const tabs = [
   { id: "orders", label: "Orders", icon: ShoppingCart },
   { id: "notifications", label: "Notify", icon: Bell },
   { id: "adverts", label: "Adverts", icon: Megaphone },
+  { id: "gallery", label: "Gallery", icon: Images },
   { id: "trainers", label: "Trainers", icon: Dumbbell },
   { id: "bookings", label: "Bookings", icon: Calendar },
   { id: "employees", label: "Staff", icon: Briefcase },
@@ -229,6 +231,7 @@ export default function Admin() {
       {tab === "orders" && <OrdersTab />}
       {tab === "notifications" && <NotificationsTab usersById={usersById} />}
       {tab === "adverts" && <AdvertsTab />}
+      {tab === "gallery" && <GalleryTab />}
       {tab === "trainers" && <TrainersTab />}
       {tab === "bookings" && <BookingsTab />}
       {tab === "employees" && <EmployeesTab />}
