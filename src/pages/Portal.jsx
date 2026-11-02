@@ -11,7 +11,7 @@ import ProfileView from "@/components/portal/ProfileView";
 import TestimonialView from "@/components/portal/TestimonialView";
 import GalleryView from "@/components/portal/GalleryView";
 import BottomNavBar from "@/components/layout/BottomNavBar";
-import { LayoutDashboard, CreditCard, Dumbbell, FileSignature, Calendar, User, MessageSquareQuote, Images } from "lucide-react";
+import { LayoutDashboard, CreditCard, Dumbbell, FileSignature, Calendar, User, MessageSquareQuote, Images, LogOut } from "lucide-react";
 
 const tabs = [
   { id: "dashboard", label: "Home", icon: LayoutDashboard },
@@ -75,13 +75,20 @@ export default function Portal() {
   }
 
   return (
-    <div className="pt-20 pb-4 px-4 min-h-screen lg:pt-28 lg:pb-16 lg:px-8 lg:max-w-7xl lg:mx-auto">
-      <div className="mb-4 flex items-center justify-between">
-        <div>
-          <p className="font-display text-[10px] tracking-widest text-primary">SR FITS</p>
-          <h1 className="font-space font-bold text-2xl lg:text-3xl">Member Portal</h1>
+    <div className="pt-16 pb-28 px-4 min-h-screen lg:pt-24 lg:pb-16 lg:px-8 lg:max-w-7xl lg:mx-auto">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <User className="w-5 h-5 text-primary" />
+          <div>
+            <p className="font-display text-[10px] tracking-widest text-primary">SR FITS</p>
+            <h1 className="font-space font-bold text-xl">Member Portal</h1>
+          </div>
         </div>
-        <button onClick={lock} className="text-[11px] text-muted-foreground hover:text-primary">Lock</button>
+        <div className="flex items-center gap-2">
+          <button onClick={lock} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-primary/20 rounded-lg px-3 py-2">
+            <LogOut className="w-3.5 h-3.5" /> Logout
+          </button>
+        </div>
       </div>
       <div className="lg:flex lg:gap-8 lg:items-start">
       <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:w-56 lg:shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-1">
