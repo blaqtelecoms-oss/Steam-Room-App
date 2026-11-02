@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, User, RefreshCw } from "lucide-react";
+import { MessageCircle, User } from "lucide-react";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const SESSION_KEY = "srfits_portal_member";
@@ -14,7 +14,6 @@ const desktopLinks = [
   { label: "Shop", path: "/shop" },
   { label: "Pricing", path: "/pricing" },
   { label: "Challenge", path: "/challenge" },
-  { label: "Gallery", path: "/gallery" },
   { label: "Portal", path: "/portal" },
   { label: "Contact", path: "/contact" },
 ];
@@ -23,12 +22,6 @@ export default function Navbar() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [member, setMember] = useState(null);
-  const [refreshing, setRefreshing] = useState(false);
-
-  const refresh = () => {
-    setRefreshing(true);
-    window.location.reload();
-  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -88,13 +81,6 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <button
-              onClick={refresh}
-              aria-label="Refresh"
-              className="lg:hidden w-9 h-9 rounded-xl border border-primary/20 bg-white/[0.03] flex items-center justify-center text-primary hover:border-primary/50 transition-colors"
-            >
-              <RefreshCw className={`w-4.5 h-4.5 ${refreshing ? "animate-spin" : ""}`} />
-            </button>
 
             <Link
               to="/contact"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { Lock, Users, Trophy, CreditCard, Bell, Shield, LogOut, Megaphone, LogIn, Dumbbell, Calendar, Wallet, Package, ShoppingCart, Briefcase, KeyRound, Images } from "lucide-react";
@@ -15,6 +16,7 @@ import OrdersTab from "@/components/admin/OrdersTab";
 import EmployeesTab from "@/components/admin/EmployeesTab";
 import DebitsTab from "@/components/admin/DebitsTab";
 import GalleryTab from "@/components/admin/GalleryTab";
+import BottomNavBar from "@/components/layout/BottomNavBar";
 
 const ADMIN_PASSWORD = "Admin2026";
 
@@ -34,8 +36,20 @@ const tabs = [
   { id: "employees", label: "Staff", icon: Briefcase },
 ];
 
+// Shown in the mobile bottom bar; everything else lives behind its centre button.
+const primaryTabIds = ["members", "payments", "bookings", "employees"];
+
+const toBottomItem = (activeTab, setTab) => (t) => ({
+  key: t.id,
+  label: t.label,
+  icon: t.icon,
+  active: activeTab === t.id,
+  onClick: () => setTab(t.id),
+});
+
 export default function Admin() {
-  const { user, isAuthenticated, isLoadingAuth, navigateToLogin } = useAuth();
+  const { user, isAuthenticated, isLoadingAuth, navigateToLogin, logout: signOutAccount } = useAuth();
+  const navigate = useNavigate();
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("sr_admin") === "1");
   const [pw, setPw] = useState("");
   const [err, setErr] = useState(false);
@@ -87,10 +101,13 @@ export default function Admin() {
     }
   };
 
+  // Sign out of the admin account and land on the public homepage.
   const logout = () => {
     sessionStorage.removeItem("sr_admin");
     setAuthed(false);
     setPw("");
+    signOutAccount(false);
+    navigate("/", { replace: true });
   };
 
   const changePassword = async () => {
@@ -181,7 +198,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="pt-16 pb-8 px-4 min-h-screen lg:pt-24 lg:pb-16 lg:px-8 lg:max-w-7xl lg:mx-auto">
+    <div className="pt-16 pb-28 px-4 min-h-screen lg:pt-24 lg:pb-16 lg:px-8 lg:max-w-7xl lg:mx-auto">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Shield className="w-5 h-5 text-primary" />
@@ -195,7 +212,7 @@ export default function Admin() {
             <KeyRound className="w-3.5 h-3.5" /> Password
           </button>
           <button onClick={logout} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-primary/20 rounded-lg px-3 py-2">
-            <LogOut className="w-3.5 h-3.5" /> Lock
+            <LogOut className="w-3.5 h-3.5" /> Logout
           </button>
         </div>
       </div>
@@ -211,7 +228,7 @@ export default function Admin() {
         </div>
       )}
       <div className="lg:flex lg:gap-8 lg:items-start">
-      <div className="flex gap-2 mb-5 overflow-x-auto pb-1 lg:flex-col lg:w-56 lg:shrink-0 lg:overflow-visible lg:mb-0 lg:pb-0 lg:sticky lg:top-24">
+      <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:w-56 lg:shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-1">
         {visibleTabs.map((t) => {
           const active = tab === t.id;
           return (
@@ -237,6 +254,10 @@ export default function Admin() {
       {tab === "employees" && <EmployeesTab />}
       </div>
       </div>
+      <BottomNavBar
+        items={visibleTabs.filter((t) => primaryTabIds.includes(t.id)).map(toBottomItem(tab, setTab))}
+        moreItems={visibleTabs.filter((t) => !primaryTabIds.includes(t.id)).map(toBottomItem(tab, setTab))}
+      />
     </div>
   );
 }

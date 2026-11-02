@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { isVideoMedia } from "@/lib/media";
+import { isVideoMedia, mediaFileName } from "@/lib/media";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import DownloadButton from "@/components/gallery/DownloadButton";
 import { ImageOff, Play } from "lucide-react";
 
 export default function GalleryView() {
@@ -41,30 +42,36 @@ export default function GalleryView() {
         {items.map((item) => {
           const video = isVideoMedia(item.media_url, item.media_type);
           return (
-            <button
-              key={item.id}
-              onClick={() => setActive(item)}
-              className="group relative aspect-square overflow-hidden rounded-xl border border-primary/20 bg-card"
-            >
-              {video ? (
-                <>
-                  <video src={item.media_url} muted preload="metadata" playsInline className="w-full h-full object-cover" />
-                  <span className="absolute inset-0 flex items-center justify-center bg-black/30">
-                    <Play className="w-7 h-7 text-primary" fill="currentColor" />
-                  </span>
-                </>
-              ) : (
-                <img
-                  src={item.media_url}
-                  alt={item.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-              )}
-              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-2 py-1.5">
-                <span className="block text-left text-[11px] font-semibold text-white truncate">{item.title}</span>
-              </span>
-            </button>
+            <div key={item.id} className="relative">
+              <button
+                onClick={() => setActive(item)}
+                className="group relative w-full aspect-square overflow-hidden rounded-xl border border-primary/20 bg-card"
+              >
+                {video ? (
+                  <>
+                    <video src={item.media_url} muted preload="metadata" playsInline className="w-full h-full object-cover" />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <Play className="w-7 h-7 text-primary" fill="currentColor" />
+                    </span>
+                  </>
+                ) : (
+                  <img
+                    src={item.media_url}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  />
+                )}
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-2 py-1.5">
+                  <span className="block text-left text-[11px] font-semibold text-white truncate">{item.title}</span>
+                </span>
+              </button>
+              <DownloadButton
+                url={item.media_url}
+                filename={mediaFileName(item.title, item.media_url)}
+                className="absolute right-2 top-2 h-7 w-7"
+              />
+            </div>
           );
         })}
       </div>
@@ -79,9 +86,17 @@ export default function GalleryView() {
               ) : (
                 <img src={active.media_url} alt={active.title} className="w-full max-h-[75vh] object-contain rounded-lg" />
               )}
-              <div className="px-1 pb-1">
-                <p className="text-sm font-semibold">{active.title}</p>
-                {active.caption && <p className="text-xs text-muted-foreground mt-0.5">{active.caption}</p>}
+              <div className="flex items-center justify-between gap-3 px-1 pb-1">
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold truncate">{active.title}</p>
+                  {active.caption && <p className="text-xs text-muted-foreground mt-0.5">{active.caption}</p>}
+                </div>
+                <DownloadButton
+                  url={active.media_url}
+                  filename={mediaFileName(active.title, active.media_url)}
+                  showLabel
+                  className="shrink-0 h-9 px-3"
+                />
               </div>
             </>
           )}
