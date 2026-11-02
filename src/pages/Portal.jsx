@@ -9,7 +9,8 @@ import PortalGate from "@/components/portal/PortalGate";
 import BookPtView from "@/components/portal/BookPtView";
 import ProfileView from "@/components/portal/ProfileView";
 import TestimonialView from "@/components/portal/TestimonialView";
-import { LayoutDashboard, CreditCard, Dumbbell, FileSignature, Calendar, User, MessageSquareQuote } from "lucide-react";
+import GalleryView from "@/components/portal/GalleryView";
+import { LayoutDashboard, CreditCard, Dumbbell, FileSignature, Calendar, User, MessageSquareQuote, Images } from "lucide-react";
 
 const tabs = [
   { id: "dashboard", label: "Home", icon: LayoutDashboard },
@@ -18,6 +19,7 @@ const tabs = [
   { id: "program", label: "Program", icon: Dumbbell },
   { id: "forms", label: "Forms", icon: FileSignature },
   { id: "testimony", label: "Review", icon: MessageSquareQuote },
+  { id: "gallery", label: "Gallery", icon: Images },
   { id: "profile", label: "Profile", icon: User },
 ];
 
@@ -95,6 +97,7 @@ export default function Portal() {
       {tab === "program" && <ProgramView member={member} />}
       {tab === "forms" && <FormsView member={member} />}
       {tab === "testimony" && <TestimonialView member={member} />}
+      {tab === "gallery" && <GalleryView />}
       {tab === "profile" && <ProfileView member={member} onUpdate={unlock} onLock={lock} />}
       </div>
       </div>

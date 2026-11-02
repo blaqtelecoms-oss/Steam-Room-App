@@ -11,6 +11,7 @@ const AVAILABLE_DUTIES = [
   { id: "inventory", label: "Inventory", desc: "Manage shop products & stock" },
   { id: "notifications", label: "Notifications", desc: "Send member notifications" },
   { id: "adverts", label: "Adverts", desc: "Manage home page adverts" },
+  { id: "gallery", label: "Gallery", desc: "Manage member gallery media" },
   { id: "trainers", label: "Trainers", desc: "Manage trainer profiles" },
   { id: "bookings", label: "Bookings", desc: "View & manage bookings" },
 ];

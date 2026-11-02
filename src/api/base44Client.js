@@ -184,8 +184,8 @@ function makeEntity(table) {
 }
 
 // base44.entities.<AnyEntity> → table name.
-// Most entities just lowercase, but a few table names are plural.
-const TABLE_MAP = { order: "orders", user: "users" };
+// Most entities just lowercase, but a few table names are plural or snake_case.
+const TABLE_MAP = { order: "orders", user: "users", galleryitem: "gallery_item" };
 
 const entities = new Proxy(
   {},
