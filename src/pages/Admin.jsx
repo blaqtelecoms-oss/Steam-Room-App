@@ -207,7 +207,7 @@ export default function Admin() {
             <KeyRound className="w-3.5 h-3.5" /> Password
           </button>
           <button onClick={logout} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-primary/20 rounded-lg px-3 py-2">
-            <LogOut className="w-3.5 h-3.5" /> Lock
+            <LogOut className="w-3.5 h-3.5" /> Logout
           </button>
         </div>
       </div>
