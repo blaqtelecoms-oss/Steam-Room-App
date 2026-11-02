@@ -10,6 +10,7 @@ import BookPtView from "@/components/portal/BookPtView";
 import ProfileView from "@/components/portal/ProfileView";
 import TestimonialView from "@/components/portal/TestimonialView";
 import GalleryView from "@/components/portal/GalleryView";
+import BottomNavBar from "@/components/layout/BottomNavBar";
 import { LayoutDashboard, CreditCard, Dumbbell, FileSignature, Calendar, User, MessageSquareQuote, Images } from "lucide-react";
 
 const tabs = [
@@ -22,6 +23,9 @@ const tabs = [
   { id: "gallery", label: "Gallery", icon: Images },
   { id: "profile", label: "Profile", icon: User },
 ];
+
+// Shown in the mobile bottom bar; everything else lives behind its centre button.
+const primaryTabIds = ["dashboard", "payments", "book", "profile"];
 
 const SESSION_KEY = "srfits_portal_member";
 
@@ -80,7 +84,7 @@ export default function Portal() {
         <button onClick={lock} className="text-[11px] text-muted-foreground hover:text-primary">Lock</button>
       </div>
       <div className="lg:flex lg:gap-8 lg:items-start">
-      <div className="flex gap-2 mb-5 overflow-x-auto pb-1 lg:flex-col lg:w-56 lg:shrink-0 lg:overflow-visible lg:mb-0 lg:pb-0 lg:sticky lg:top-24">
+      <div className="hidden lg:flex lg:flex-col lg:gap-2 lg:w-56 lg:shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-1">
         {tabs.map((t) => {
           const active = tab === t.id;
           return (
@@ -101,6 +105,18 @@ export default function Portal() {
       {tab === "profile" && <ProfileView member={member} onUpdate={unlock} onLock={lock} />}
       </div>
       </div>
+      <BottomNavBar
+        items={tabs.filter((t) => primaryTabIds.includes(t.id)).map(toBottomItem(tab, setTab))}
+        moreItems={tabs.filter((t) => !primaryTabIds.includes(t.id)).map(toBottomItem(tab, setTab))}
+      />
     </div>
   );
 }
+
+const toBottomItem = (activeTab, setTab) => (t) => ({
+  key: t.id,
+  label: t.label,
+  icon: t.icon,
+  active: activeTab === t.id,
+  onClick: () => setTab(t.id),
+});
