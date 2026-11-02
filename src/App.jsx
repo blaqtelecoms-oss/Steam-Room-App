@@ -7,8 +7,6 @@ import { AuthProvider, useAuth } from "@/lib/AuthContext";
 import UserNotRegisteredError from "@/components/UserNotRegisteredError";
 
 import PageLayout from "@/components/layout/PageLayout";
-import AdminShell from "@/components/admin/AdminShell";
-import MemberShell from "@/components/portal/MemberShell";
 import Home from "@/pages/Home";
 import Classes from "@/pages/Classes";
 import Trainers from "@/pages/Trainers";
@@ -49,25 +47,17 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
-      {/* Signed-in admins get the admin console, signed-in members their portal,
-          instead of the public app pages. */}
-      <Route element={<AdminShell />}>
-        <Route element={<MemberShell />}>
-          <Route element={<PageLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/classes" element={<Classes />} />
-            <Route path="/trainers" element={<Trainers />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/portal" element={<Portal />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/challenge" element={<Challenge />} />
-          </Route>
-        </Route>
-      </Route>
       <Route element={<PageLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/classes" element={<Classes />} />
+        <Route path="/trainers" element={<Trainers />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/portal" element={<Portal />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/challenge" element={<Challenge />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/member/:id" element={<MemberDetail />} />
         <Route path="/checkout/return" element={<CheckoutReturn />} />
